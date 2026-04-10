@@ -45,7 +45,7 @@ function addNewItem() {
         nameInput.value = '';
         weightInput.value = '';
     }
-    
+
 }
 
 function updateItemList() {
@@ -57,7 +57,7 @@ function updateItemList() {
         itemsContainer.appendChild(emptyDiv);
         return;
     } else {
-        for (item of items) {
+        for ( let item of items) {
             const itemDiv = document.createElement('div');
             itemDiv.className = 'd-flex justify-content-between align-items-center mb-2 p-2 border rounded';
             itemDiv.innerHTML = `
@@ -69,8 +69,11 @@ function updateItemList() {
         `;
             const removeBtn = itemDiv.querySelector('#removeBtn');
             removeBtn.addEventListener('click', () => {
-                itemDiv.classList.add('d-none');
-                
+                items = items.filter(i => i !== item);
+                updateItemList();
+                updateAddButtonState();
+
+
             });
             itemsContainer.appendChild(itemDiv);
         }
